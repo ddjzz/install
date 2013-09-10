@@ -1,0 +1,56 @@
+1. Install
+# ./install.sh
+
+
+2. add share folder and set permition
+
+(1) set by GUI
+=============================
+#run up samba in GUI
+#sudo system-config-samba 
+
+or run from GUI MENU
+
+-----
+Basic 
+	Directory :/home/android-toshiba/workspace/projects/
+	Share name :projects
+	
+	Writeable : check
+	Visible   : check
+	
+Access
+	Only allow access to specific users : check
+	
+	android-toshiba : check
+
+(2) set by config file
+=============================
+modified /etc/samba/smb.conf
+
+# cat >> /etc/samba/smb.conf << EOF
+
+[workspace]
+	comment         = Public Areas
+	path            = /workspace
+	browseable      = yes
+	public          = yes
+	writable        = yes
+	create mode     = 0775
+	directory mode  = 0775
+	printable       = no
+	guest ok        = yes
+	;write list     = +staff
+
+EOF
+
+
+3. add user for samba
+
+# smbpasswd -a atwood
+New SMB password
+retype New SMB Password
+
+
+Note : no need to restart samba service : smbd
+
