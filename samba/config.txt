@@ -36,7 +36,7 @@ modified /etc/samba/smb.conf
 	browseable      = yes
 	public          = yes
 	writable        = yes
-	create mode     = 0775
+	create mode     = 0664
 	directory mode  = 0775
 	printable       = no
 	guest ok        = yes
@@ -51,6 +51,11 @@ EOF
 New SMB password
 retype New SMB Password
 
+4. Note
+(1) Note : after modified config file /etc/samba/smb.conf , no need to restart samba service : smbd , but you should close connect window , and wait for a while (This is need when we change create mode .), then reconnect.
 
-Note : no need to restart samba service : smbd
+
+(2) no to connet in windows
+
+net use * /d 
 
