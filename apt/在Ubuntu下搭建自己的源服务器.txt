@@ -1,0 +1,91 @@
+在Ubuntu下搭建自己的源服务器
+2010-12-14 20:51:37
+
+分类： LINUX
+
+1、摘要
+    网上有很很多关于搭建源镜像的文章，但是对于一般人来讲，用不着镜像所有的deb包，只对我们能用到的感兴趣。另外，对于一些在Ubuntu的源中没有的软件，我们也可以放在我们自己的源里，这样需要的时候就用不着去网上重新搜了。
+ 
+2、源服务器目录结构
+ 
+dists
++------Lucid
+|      +---------main
+|      |         +------------binary-i386
+|      |         |            +--------------xxx.deb
+|      |         |            +--------------xxx.deb
+|      |         |            +--------------……
+|      |         |            +--------------Packages.gz
+|      |         +------------其它体系结构
+|      +---------restricted
+|      |         +------------binary-i386
+|      |         +------------其它体系结构
+|      +---------universe
+|      +---------multiverse
++------Maverick
++------Natty
+ 
+dists目录下包含各种ubuntu发布版本名称：Lucid(10.04)、Maverick(10.10)等等；
+版本名称(Lucid)目录下包含4种软件包类别：
+    main : 官方支持的软件包
+    restricted :受限（许可证）支持软件包
+    universe :社区支持软件包，非官方支持软件包
+    multiverse :收费软件包
+包类别(main)目录下包含各种体系结构：binary-i386等等
+体系结构(binary-i386)目录下包含软件包deb文件，并且第一个体系结构目录下都有一个Packages.gz文件。
+ 
+3、source.list文件
+
+deb http://us.archive.ubuntu.com/ubuntu/ hardy main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu/ hardy main restricted
+
+以上两行为source.list文件的一部分，其含义如下：
+    ubuntu中根据deb包中所包含的内容将其分为两种，一种是包含已编译的二进制可执行文件或预编译的deb包，另一种是包含软件源码的deb包。在source.list文件中用deb和deb-src区分这种包；
+    http://us.archive.ubuntu.com/ubuntu/表示deb包所在的服务器目录；
+    hardy表示ubuntu的发布版本号；
+    main restricted表软件包的类别。
+ 
+以X86主机为例，deb http://us.archive.ubuntu.com/ubuntu hardy main restricted表示包含服务器端如下两目录中的deb文件。
+    http://us.archive.ubuntu.com/ubuntu/dists/hardy/main/binary-i386/
+    http://us.archive.ubuntu.com/ubuntu/dists/hardy/restricted/binary-i386/
+ 
+当执行apt-get update命令时，会读http://us.archive.ubuntu.com/ubuntu/dists/hardy/main/binary-i386/Packages.gz中以及其它目录中Packages.gz中的deb文件列表。
+ 
+当执行apt-get install xxx时，会根据apt-get update得到的deb文件列表获取相应的deb文件。
+ 
+由以上过程可知，搭建源服务器最关键的步骤是生成Packages.gz文件，由dpkg-scanpackages命令完成。举例，如需要给dists/hardy/main/binary-i386目录生成Packages.gz，命令如下：
+
+cd dists/../     # 进入dists的父目录
+dpkg-scanpackages dists/hardy/main/binary-i386 | gzip -9 > dists/hardy/main/binary-i386/Packages.gz
+
+4、服务器搭建
+安装完Apache后，将dists目录拷贝到Apache服务器根目录的ubuntu目录下，或者创建符号链接。
+ 
+5、其它
+查看一个dpkg-scanpackages命令属于哪个软件包:
+apt-file search dpkg-scanpackages | grep bin
+ 
+6、参考链接
+https://help.ubuntu.com/community/Debmirror
+https://help.ubuntu.com/community/Repositories/CommandLine
+http://forum.ubuntu.org.cn/viewtopic.php?t=65823
+http://repogen.simplylinux.ch/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://blog.chinaunix.net/uid-24874146-id-2556553.html
+
+
+
+

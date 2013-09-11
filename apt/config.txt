@@ -1,0 +1,27 @@
+#############################
+# In server
+#############################
+# current dir
+pwd
+# /data/apt/ubuntu
+
+
+mkdir pool
+cd /data/apt/ubunt
+./apt.sh
+
+
+# install apache
+apt-get install apache2
+
+ln -s /data/apt/ubuntu/ /var/www/ubuntu
+
+
+#############################
+# In client
+#############################
+# add follow line to the head of /etc/apt/sources.list
+deb http://10.13.131.48/ubuntu precise main
+
+
+
