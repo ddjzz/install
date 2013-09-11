@@ -1,8 +1,29 @@
+##############################
 1. Install
+##############################
 # ./install.sh
 
 
-2. add share folder and set permition
+
+
+
+##############################
+2. Global config
+##############################
+(1) guest account
+In order to change guest account from nobody to root, add follow line to [global] section
+
+guest account   = root
+
+(2) set print unvisiable
+
+[print$]
+browseable = no
+
+
+##############################
+3. Add share folder and set permition
+##############################
 
 (1) set by GUI
 =============================
@@ -31,7 +52,7 @@ modified /etc/samba/smb.conf
 # cat >> /etc/samba/smb.conf << EOF
 
 [workspace]
-	comment         = Public Areas
+	comment         = workspace of 23 
 	path            = /workspace
 	browseable      = yes
 	public          = yes
@@ -40,22 +61,43 @@ modified /etc/samba/smb.conf
 	directory mode  = 0775
 	printable       = no
 	guest ok        = yes
+	;valid users    = root
 	;write list     = +staff
 
 EOF
 
 
-3. add user for samba
+##############################
+4. Add user for samba
+##############################
 
-# smbpasswd -a atwood
+# smbpasswd -a root
 New SMB password
 retype New SMB Password
 
-4. Note
+
+
+##############################
+5. Note
+##############################
+
 (1) Note : after modified config file /etc/samba/smb.conf , no need to restart samba service : smbd , but you should close connect window , and wait for a while (This is need when we change create mode .), then reconnect.
 
 
 (2) no to connet in windows
 
 net use * /d 
+
+(3) smb.conf help
+man smb.conf
+
+(4) test smb.conf
+testparm
+
+(5) restart service
+service smbd restart
+
+(6) samba can use folder symbol link
+
+ln -s /home/atwood/workspace/projects/t7t /home/projects
 
