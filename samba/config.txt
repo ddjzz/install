@@ -101,3 +101,14 @@ service smbd restart
 
 ln -s /home/atwood/workspace/projects/t7t /home/projects
 
+(7) set/clear SGID
+
+# set SGID
+chmod 2775 filename
+or
+chmod g+s filename
+# clear SGID
+chmod g-s filename
+# But chmod 0775 filename may not effect.
+
+
