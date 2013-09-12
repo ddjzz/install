@@ -10,7 +10,7 @@ sudo cp nxsetup /usr/lib/nx
 
 sudo /usr/lib/nx/nxsetup --install --setup-nomachine-key
 
-sudo echo -e "\n#Use unity 2d for client sessions\nCOMMAND_START_GNOME='gnome-session --session=ubuntu-2d'" | sudo tee -a /etc/nxserver/node.conf
+sudo echo -e "\n##Use gnome for client sessions\nCOMMAND_START_GNOME='gnome-session --session=gnome'" | sudo tee -a /etc/nxserver/node.conf
 
 
 sudo /etc/init.d/freenx-server restart
