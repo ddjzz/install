@@ -24,7 +24,7 @@ pushd $dir_pool >/dev/null
 pushd .. >/dev/nell
 
 mkdir -p dists/precise/main/binary-amd64/
-dpkg-scanpackages pool /dev/null | gzip > dists/precise/main/binary-amd64/Packages.gz 2&> /dev/null
+dpkg-scanpackages pool /dev/null | gzip > dists/precise/main/binary-amd64/Packages.gz
 
 popd >/dev/null
 popd >/dev/null
