@@ -4,7 +4,7 @@
 sudo add-apt-repository ppa:freenx-team
 sudo apt-get update
 
-sudo apt-get install -y freenx
+sudo apt-get install freenx
 
 sudo cp nxsetup /usr/lib/nx 
 
