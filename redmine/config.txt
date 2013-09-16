@@ -1,0 +1,23 @@
+
+1. apache2配置
+sudo vim /etc/apache2/conf.d/redmine.conf
+加入：
+RailsEnv production
+RailsBaseURI /redmine
+
+2. 建立连接
+sudo ln -s /usr/share/redmine/public /var/www/redmine
+
+3. 重启apache2
+sudo service apache2 restart
+
+4. 访问redmine
+本机：127.0.0.1/redmine
+默认用户密码：admin/admin
+
+
+5. 中文设置：
+登录后， My account -> Language
+
+
+
