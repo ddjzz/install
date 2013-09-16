@@ -10,7 +10,7 @@ cd repositories
 mkdir -p ubuntu/install.git
 cd ubuntu/install.git
 
-git init
+git init --bare
 
 #############################
 # In client 
