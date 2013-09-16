@@ -1,0 +1,6 @@
+host 23
+	user		git
+	hostname	10.13.131.23
+	port		22
+	identityfile	~/.ssh/git
+
