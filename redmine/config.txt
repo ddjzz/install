@@ -23,3 +23,6 @@ sudo service apache2 restart
 6. 邮箱设置
 在 /etc/redmine/default 下，放置 configuration.yml 文件，并重启电脑。
 
+
+7. 项目附件的文件，会放在 /var/lib/redmine/default/files/ 中。注意 /var 所在分区的大小是否足够。
+
