@@ -12,8 +12,26 @@ cd ubuntu/install.git
 
 git init --bare
 
-# Note: for specify not wild project, we must create repo in server first , and then config gitolite-admin. 
-# Otherwise we will get FATAL in push commit to gitolite-admin and git clone this specify project.
+# Note: for specify not wild project, we must create repo in server first , and then config gitolite-admin.
+# When we had push config to gitolite-admin ,it will add "gl-conf" to specifiy project repo.
+# Otherwise we will get FATAL in push commit to gitolite-admin and git clone this specify project.Bellow are the error message.
+
+#  gitolite-admin $ git push 
+# Counting objects: 7, done.
+# Delta compression using up to 2 threads.
+# Compressing objects: 100% (3/3), done.
+# Writing objects: 100% (4/4), 451 bytes, done.
+# Total 4 (delta 1), reused 0 (delta 0)
+# remote: Initialized empty Git repository in /software/gitolite/repositories/t7gd/manifests-byd.git/
+# remote: Initialized empty Git repository in /software/gitolite/repositories/t7gd/script.git/
+# remote: FATAL: 't7g/.repo/manifests/' ends with a '/'
+# To git@10.13.131.19:gitolite-admin
+#    aaece04..3041494  master -> master
+
+# src $ git clone ssh://git@10.13.131.19:22/t7gd/manifests-byd
+# Cloning into 'manifests-byd'...
+# FATAL: split conf set, gl-conf not present for 't7gd/manifests-byd'
+# fatal: The remote end hung up unexpectedly
 
 #############################
 # In client 
