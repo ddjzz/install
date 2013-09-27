@@ -12,6 +12,9 @@ cd ubuntu/install.git
 
 git init --bare
 
+# Note: for specify not wild project, we must create repo in server first , and then config gitolite-admin. 
+# Otherwise we will get FATAL in push commit to gitolite-admin and git clone this specify project.
+
 #############################
 # In client 
 #############################
