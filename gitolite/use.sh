@@ -52,3 +52,18 @@ git push origin master:master
 
 git pull
 git push
+
+
+#############################
+# Add an exist git repo to server as bare
+#############################
+
+# 1. Create an bare repo in server and cofig right in gitolite-admin
+
+# 2. git clone server bare repo to locate in somewhere, for example test.
+
+# 3. Enter test, git pull <exit git repo>
+
+# 4. git push origin master:master
+
+# When push successfully , We finish add this exist git repo to server.
