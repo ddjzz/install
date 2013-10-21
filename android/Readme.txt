@@ -23,3 +23,9 @@ ref ccache.sh
 
 In order to use /sbin/tune2fs for generate system.img, you must  have /sbin in PATH.
 
+
+
+# how to use coloredlogcat.py
+
+adb logcat | /path/to/coloredlogcat.py
+
